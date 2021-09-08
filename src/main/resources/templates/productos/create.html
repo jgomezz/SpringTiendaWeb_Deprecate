@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{layouts/default :: layout(~{::title}, _, ~{::nav}, ~{::content})}">
+<head>
+    <title>Crear Producto</title>
+</head>
+<body>
+
+	<nav th:fragment="nav" aria-label="breadcrumb">
+		<ol class="breadcrumb my-3">
+			<li class="breadcrumb-item"><a href="#">Inicio</a></li>
+			<li class="breadcrumb-item"><a href="#">Mantenimiento</a></li>
+			<li class="breadcrumb-item"><a href="#" th:href="@{/productos/}">Productos</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Crear</li>
+		</ol>
+	</nav>
+
+	<th:block th:fragment="content">
+
+		<form action="" th:action="@{/productos/store}" method="post" enctype="multipart/form-data" th:object="${producto}">
+			<div class="card mb-3">
+				<div class="card-header">
+	            	Crear Producto
+	            </div>
+	            <div class="card-body">
+	            
+	            	<div class="form-group">
+	            		<label for="id_categoria">Categor&iacute;a</label>
+	            		<select id="id_categoria" name="categoria" th:field="*{categoria}" class="form-control" required="required">
+	            			<option th:each="categoria : ${categorias}" value="" th:value="${categoria.id}" th:text="${categoria.nombre}">Catería</option>
+	            		</select>
+	            	</div>
+	            	
+	            	<div class="form-group">
+            			<label for="nombre">Nombre</label>
+            			<input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="form-control" required="required" maxlength="128"/>
+            		</div>
+            		
+            		<div class="form-group">
+            			<label for="descripcion">Descripci&oacute;n</label>
+            			<textarea id="descripcion" name="descripcion" th:field="*{descripcion}" class="form-control" maxlength="256"></textarea>
+            		</div>
+            		
+            		<div class="form-group">
+            			<label for="precio">Precio</label>
+            			<div class="input-group">
+            				<div class="input-group-prepend">
+          						<div class="input-group-text">S/</div>
+        					</div>
+        					<input type="number" id="precio" name="precio" th:field="*{precio}" class="form-control" step="0.01" min="0" />
+       					</div>
+            		</div>
+            		
+            		<div class="form-group">
+            			<label for="stock">Stock</label>
+            			<input type="number" id="stock" name="stock" th:field="*{stock}" class="form-control" step="1" min="0" />
+            		</div>
+            		
+					<!-- Require: https://www.npmjs.com/package/bs-custom-file-input -->
+            		<div class="form-group">
+	            		<label for="file">Imagen</label>
+	            		<div class="custom-file">
+							<input type="file" id="file" name="file" class="custom-file-input">
+							<label for="imagen" class="custom-file-label" data-browse="Elegir">Seleccionar archivo...</label>
+						</div>
+					</div>
+	            
+	            </div>
+	            <div class="card-footer">
+	            	<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button>
+	            	<button type="button" class="btn btn-secondary" onclick="history.back()"><i class="fa fa-times"></i> Cancelar</button>
+	            </div>
+			</div>
+		</form>
+
+    </th:block>
+    
+</body>
+</html>

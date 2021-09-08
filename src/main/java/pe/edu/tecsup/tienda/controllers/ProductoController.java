@@ -58,5 +58,17 @@ public class ProductoController {
 		return "productos/index";
 	}
 
-	
+	@GetMapping("/create")
+	public String create(Model model) throws Exception {
+		logger.info("call create()");
+		
+		List<Categoria> categorias = categoriaService.findAll();
+		model.addAttribute("categorias", categorias);
+		
+		Producto producto = new Producto();
+		model.addAttribute("producto", producto);
+		
+		return "productos/create";
+	}
+
 }
