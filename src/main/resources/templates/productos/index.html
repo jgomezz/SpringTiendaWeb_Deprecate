@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+	  th:replace="~{layouts/default :: layout(~{::title}, ~{::assets}, ~{::nav}, ~{::content})}">
 <head>
     <title>Lista de Productos</title>
     <th:block th:fragment="assets">
