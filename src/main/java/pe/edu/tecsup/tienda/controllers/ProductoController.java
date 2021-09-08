@@ -48,7 +48,7 @@ public class ProductoController {
     private String STORAGEPATH;
 
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public String index(Model model) throws Exception {
 		logger.info("call index()");
 		

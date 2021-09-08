@@ -1,1 +1,31 @@
-SALIDA
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="ISO-8859-1">
+<title>Productos</title>
+</head>
+<body>
+
+	<h2>Productos</h2>
+
+	<span th:text="${mensaje}">Hola Juan</span>
+
+	<hr>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<td>Nombre</td>
+				<td>Precio</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="producto : ${productos}">
+				<td th:text="${producto.nombre}"/>
+				<td th:text="${producto.precio}"/>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
