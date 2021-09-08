@@ -70,5 +70,32 @@ public class ProductoController {
 		
 		return "productos/create";
 	}
+	
+	@PostMapping("/store")
+	public String store(@ModelAttribute("producto") Producto producto, Errors errors, 
+			@RequestParam("file") MultipartFile file,
+			RedirectAttributes redirectAttrs) throws Exception{
+		logger.info("call store(producto: " + producto + ")");
+		
+		if(file != null && !file.isEmpty()) {
+			String filename = System.currentTimeMillis() + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+			producto.setImagen_nombre(filename);
+			if(Files.notExists(Paths.get(STORAGEPATH))){
+		        Files.createDirectories(Paths.get(STORAGEPATH));
+		    }
+			Files.copy(file.getInputStream(), Paths.get(STORAGEPATH).resolve(filename), StandardCopyOption.REPLACE_EXISTING);
+		}
+		
+		producto.setCreado(new Date());
+		producto.setEstado(1);
+		
+		productoService.save(producto);
+		
+		redirectAttrs.addFlashAttribute("message", "Registro guardado correctamente");
+		
+		return "redirect:/productos/";
+	}
+	
+
 
 }
