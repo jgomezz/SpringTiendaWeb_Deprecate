@@ -3,7 +3,8 @@ package pe.edu.tecsup.tienda.config;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -33,6 +34,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //	    return new BCryptPasswordEncoder();	// Algoritmo BCrypt
 	}
 	
+	/*
 	@Bean
 	@Override
 	public UserDetailsService userDetailsServiceBean() throws Exception {
@@ -43,5 +45,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		return new InMemoryUserDetailsManager(users);
 	}
+	*/
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	public void configureAuth(AuthenticationManagerBuilder auth) throws Exception{
+		auth.userDetailsService(userDetailsService);
+	}
+
+	
 		
 }
