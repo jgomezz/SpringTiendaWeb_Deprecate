@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{layouts/default :: layout(~{::title}, _, _, ~{::content})}">
+<head>
+    <title>Página Principal</title>
+</head>
+<body>
+
+    <th:block th:fragment="content">
+
+		<div class="mt-5 col-md-4 offset-md-4 col-sm-8 offset-sm-2">
+
+            <div class="card card-default" >
+                <div class="card-header">
+                    Bienvenido a la aplicación
+                </div>
+
+            </div>
+        </div>
+
+    </th:block>
+    
+</body>
+</html>
