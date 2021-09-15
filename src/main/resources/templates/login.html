@@ -1,1 +1,53 @@
-PAGINA DE INICIO DE SESION
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{layouts/default :: layout(~{::title}, _, _, ~{::content})}">
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+    <th:block th:fragment="content">
+
+		<div class="mt-5 col-md-4 offset-md-4 col-sm-8 offset-sm-2">
+
+            <div class="card card-default" >
+                <div class="card-header">
+                    Ingreso al Sistema
+                </div>
+
+                <div class="card-body">
+
+                    <form id="loginform" class="form-horizontal" role="form" action="" th:action="@{/authenticate}" method="post" data-toggle="validator">
+
+						<div class="form-group">
+	                        <div class="input-group">
+	                            <div class="input-group-prepend"><div class="input-group-text"><i class="fas fa-user"></i></div></div>
+	                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Ingrese su usuario" autocomplete="Off" required autofocus>
+	                        </div>
+                        </div>
+
+						<div class="form-group">
+	                        <div class="input-group">
+	                            <div class="input-group-prepend"><div class="input-group-text"><i class="fas fa-lock"></i></div></div>
+	                            <input id="login-password" type="password" class="form-control" name="password" placeholder="Ingrese su clave" required>
+	                        </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="submit" id="btn-login" class="btn btn-primary" value="Ingresar">
+                             </div>
+                        </div>
+
+                    </form>
+
+                    <div class="alert alert-danger" th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null and session[SPRING_SECURITY_LAST_EXCEPTION].message != null}" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">Invalid credential</div>
+
+                </div>
+            </div>
+        </div>
+
+    </th:block>
+    
+</body>
+</html>
