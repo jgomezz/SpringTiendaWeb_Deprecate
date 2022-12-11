@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -35,7 +36,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //	    return new BCryptPasswordEncoder();	// Algoritmo BCrypt
 	}
 	
-	/*
+	//*
 	@Bean
 	@Override
 	public UserDetailsService userDetailsServiceBean() throws Exception {
@@ -44,10 +45,20 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		users.add(User.withUsername("user").password("user").roles("USER").build());
 		users.add(User.withUsername("admin").password("admin").roles("USER", "ADMIN").build());
 
-		return new InMemoryUserDetailsManager(users);
+		return new InMemoryUserDetailsManager(users);   
+		
+		/*
+	    UserDetails user = User.builder()
+	            .username("user")
+	            .password("password")
+	            .roles("USER")
+	            .build();
+	    return new InMemoryUserDetailsManager(user);
+*/
 	}
-	*/
+	//*
 	
+	/*
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
@@ -61,7 +72,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http
         // Configure authorizations
 //	        .authorizeRequests()
-//	        .antMatchers("/" /*, "/**"*/).permitAll()
+//	        .antMatchers("/" ).permitAll()
+//			.antMatchers("/" , "/**").permitAll()
 //	        .antMatchers("/home/**").authenticated()
 //	        .antMatchers("/admin/**").hasAnyAuthority("Administrador")
 //    	.and()
@@ -81,5 +93,5 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	        .csrf().disable();
     }
 
-		
+	*/	
 }
