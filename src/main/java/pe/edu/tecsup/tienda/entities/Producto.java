@@ -12,6 +12,11 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "productos")
 public class Producto {
@@ -42,77 +47,14 @@ public class Producto {
 	private Date creado;
 	private Integer estado;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	public Double getPrecio() {
-		return precio;
-	}
-	public void setPrecio(Double precio) {
-		this.precio = precio;
-	}
-	public Integer getStock() {
-		return stock;
-	}
-	public void setStock(Integer stock) {
-		this.stock = stock;
-	}
-	public String getImagen_nombre() {
-		return imagen_nombre;
-	}
-	public void setImagen_nombre(String imagen_nombre) {
-		this.imagen_nombre = imagen_nombre;
-	}
-	public String getImagen_tipo() {
-		return imagen_tipo;
-	}
-	public void setImagen_tipo(String imagen_tipo) {
-		this.imagen_tipo = imagen_tipo;
-	}
-	public Long getImagen_tamanio() {
-		return imagen_tamanio;
-	}
-	public void setImagen_tamanio(Long imagen_tamanio) {
-		this.imagen_tamanio = imagen_tamanio;
-	}
-	
-	public Date getCreado() {
-		return creado;
-	}
-
-	public void setCreado(Date creado) {
-		this.creado = creado;
-	}
-
-	public Integer getEstado() {
-		return estado;
-	}
-	public void setEstado(Integer estado) {
-		this.estado = estado;
-	}
-	
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public boolean isValidoImagenNombre() {
+		
+		if (this.imagen_nombre == null || "".equals(this.imagen_nombre.trim())) {
+			return false;
+		} else {
+			return true;
+		}
+		
 	}
 	
 	@Override

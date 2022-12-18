@@ -17,23 +17,29 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 
+class PasswordEncoderRaw implements PasswordEncoder {	// No encriptado, Texto Plano
+	
+	@Override
+	public boolean matches(CharSequence rawPassword, String encodedPassword) {
+		return rawPassword.toString().equals(encodedPassword);
+	}
+	@Override
+	public String encode(CharSequence rawPassword) {
+		return rawPassword.toString();
+	} 
+}
+
+// https://www.codejava.net/frameworks/spring-boot/fix-websecurityconfigureradapter-deprecated
+
 @Configuration
 @EnableWebSecurity
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SpringSecurityConfig 
+	extends WebSecurityConfigurerAdapter  {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return new PasswordEncoder() {	// No encriptado, Texto Plano
-			@Override
-			public boolean matches(CharSequence rawPassword, String encodedPassword) {
-				return rawPassword.toString().equals(encodedPassword);
-			}
-			@Override
-			public String encode(CharSequence rawPassword) {
-				return rawPassword.toString();
-			}
-		};
-//	    return new BCryptPasswordEncoder();	// Algoritmo BCrypt
+		return new PasswordEncoderRaw();		// Without crypt
+		// return new BCryptPasswordEncoder();	// Algoritmo BCrypt
 	}
 	
 	//*

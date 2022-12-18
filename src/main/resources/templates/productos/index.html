@@ -49,7 +49,7 @@
 		                    <td th:text="${producto.nombre}"/>
 		                   	<td th:text="${'$' + producto.precio}"/>
 		                   	<td th:text="${producto.stock}"/>
-		                   	<td><img src="" alt="" th:if="${producto.imagen_nombre != null}" th:src="@{/productos/images/} + ${producto.imagen_nombre}" th:alt="${producto.imagen_nombre}" class="img-thumbnail" style="height: 30px"/></td>
+		                   	<td><img src="" alt="" th:if="${producto.validoImagenNombre}" th:src="@{/productos/images/} + ${producto.imagen_nombre}" th:alt="${producto.imagen_nombre}" class="img-thumbnail" style="height: 30px"/></td>
 		                   	<td class="text-right">
 		                   		<a href="#" th:href="@{/productos/edit/} + ${producto.id}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a></td>
                                        <td class="text-right">
