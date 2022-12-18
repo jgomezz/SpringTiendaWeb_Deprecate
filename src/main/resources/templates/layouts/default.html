@@ -57,7 +57,7 @@
 					<a class="nav-link" href="#">Sing Up</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Login</a>
+					<a class="nav-link" th:href="@{/login}">Login</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav" sec:authorize="isAuthenticated()">
